@@ -4,7 +4,7 @@ const spinner = document.querySelector('.spinner');
 const message = document.getElementById('message');
 
 // Changez cette URL vers votre API déployée
-const API_URL = 'https://<TON-SERVICE>.onrender.com/generate';
+const API_URL = 'https://hilton-form-reporter-backend.onrender.com/generate';
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
