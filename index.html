@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form-Reporter Web</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Générateur de rapports</h1>
+      <form id="report-form">
+        <label class="file-input">
+          <span>Fichier Excel</span>
+          <input type="file" name="excel" accept=".xlsx,.xls" required />
+        </label>
+        <label class="file-input">
+          <span>Modèle Word</span>
+          <input type="file" name="template" accept=".docx" required />
+        </label>
+        <button type="submit" id="generate-btn">Générer</button>
+      </form>
+      <div id="status">
+        <div class="spinner" hidden></div>
+        <p id="message"></p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
