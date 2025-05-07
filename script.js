@@ -1,5 +1,7 @@
-const form = document.getElementById('report-form');
-const btn  = document.getElementById('generate-btn');
+// script.js
+
+const form    = document.getElementById('report-form');
+const btn     = document.getElementById('generate-btn');
 const spinner = document.querySelector('.spinner');
 const message = document.getElementById('message');
 
@@ -8,16 +10,13 @@ const API_URL = 'https://hilton-form-reporter-backend.onrender.com/generate';
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
-  btn.disabled = true;
-  spinner.hidden = false;
+  btn.disabled     = true;
+  spinner.hidden   = false;
   message.textContent = 'Génération en cours…';
 
   const data = new FormData(form);
   try {
-    const resp = await fetch(API_URL, {
-      method: 'POST',
-      body: data
-    });
+    const resp = await fetch(API_URL, { method: 'POST', body: data });
     if (!resp.ok) throw new Error(resp.statusText);
 
     const blob = await resp.blob();
@@ -35,7 +34,7 @@ form.addEventListener('submit', async e => {
     console.error(err);
     message.textContent = 'Erreur : ' + err.message;
   } finally {
-    btn.disabled = false;
+    btn.disabled   = false;
     spinner.hidden = true;
   }
 });
