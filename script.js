@@ -10,14 +10,22 @@ const API_URL = 'https://hilton-form-reporter-backend.onrender.com/generate';
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
-  btn.disabled     = true;
-  spinner.hidden   = false;
+  btn.disabled       = true;
+  spinner.hidden     = false;
   message.textContent = 'Génération en cours…';
 
   const data = new FormData(form);
   try {
     const resp = await fetch(API_URL, { method: 'POST', body: data });
-    if (!resp.ok) throw new Error(resp.statusText);
+    if (!resp.ok) {
+      // Affiche le détail renvoyé par FastAPI
+      let err = resp.statusText;
+      try {
+        const j = await resp.json();
+        err = j.detail || err;
+      } catch {}
+      throw new Error(err);
+    }
 
     const blob = await resp.blob();
     const url  = URL.createObjectURL(blob);
